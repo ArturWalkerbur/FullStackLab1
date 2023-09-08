@@ -7,7 +7,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Entity
-@Table(name="CarsTable")
+@Table(name="carstable")
 @Setter
 @Getter
 @NoArgsConstructor
@@ -26,9 +26,9 @@ public class Cars {
     private String model;
 
     @Column(name = "year")
-    private String year;
+    private Long year;
 
     @Column(name = "volume")
-    private String volume;
+    private double volume;
 
 }
