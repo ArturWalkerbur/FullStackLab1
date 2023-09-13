@@ -31,14 +31,14 @@ public class MainController {
 
     @PostMapping("/addNewCar")
     @ResponseBody
-    public String addNewCar(@RequestParam(name = "car_name") String car_name,
+    public String addNewCar(@RequestParam(name = "carname") String carname,
                             @RequestParam(name = "model") String model,
                             @RequestParam(name = "year") String year,
                             @RequestParam(name = "volume") String volume){
 
         try{
 
-            carsService.addCar(new Cars(null, car_name, model, Long.parseLong(year), Double.parseDouble(volume)));
+            carsService.addCar(new Cars(null, carname, model, Long.parseLong(year), Double.parseDouble(volume)));
 
         }catch (Exception e){
             e.printStackTrace();
@@ -73,7 +73,7 @@ public class MainController {
     @PostMapping("/editCar")
     @ResponseBody
     public String updateCar(@RequestParam(name = "carid") Long id,
-                            @RequestParam(name = "car_name") String car_name,
+                            @RequestParam(name = "carname") String carname,
                             @RequestParam(name = "model") String model,
                             @RequestParam(name = "year") String year,
                             @RequestParam(name = "volume") String volume){
@@ -82,7 +82,7 @@ public class MainController {
 
             Cars cars = carsService.getCar(id);
 
-            carsService.saveCars(new Cars(id, car_name, model, Long.parseLong(year), Double.parseDouble(volume)));
+            carsService.saveCars(new Cars(id, carname, model, Long.parseLong(year), Double.parseDouble(volume)));
 
             return "The car has been updated!";
 
@@ -91,6 +91,27 @@ public class MainController {
             return "Something wrong!";
         }
 
+    }
+
+    @GetMapping("/searchCars/{text}")
+    @ResponseBody
+    public List<Cars> getSearchCars(@PathVariable(name = "text")String text){
+        List<Cars> cars = carsService.searchCars(text);
+        return cars;
+    }
+
+    @GetMapping("/filterByYear/{year}")
+    @ResponseBody
+    public List<Cars> getFilteredCars(@PathVariable(name = "year")String year){
+        List<Cars> cars = carsService.filterCars(Long.parseLong(year));
+        return cars;
+    }
+
+    @GetMapping("/filterByVolume/{volume}")
+    @ResponseBody
+    public List<Cars> getFilteredCars2(@PathVariable(name = "volume")String volume){
+        List<Cars> cars = carsService.filterCars2(Double.parseDouble(volume));
+        return cars;
     }
 
 }

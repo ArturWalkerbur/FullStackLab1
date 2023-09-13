@@ -26,6 +26,21 @@ public class CarsServiceImpl implements CarsService {
     }
 
     @Override
+    public List<Cars> searchCars(String text) {
+        return carsRepository.findAllByCarnameOrModel(text, text);
+    }
+
+    @Override
+    public List<Cars> filterCars(Long year) {
+        return carsRepository.findAllByYear(year);
+    }
+
+    @Override
+    public List<Cars> filterCars2(double volume) {
+        return carsRepository.findAllByVolume(volume);
+    }
+
+    @Override
     public Cars getCar(Long id) {
         return carsRepository.getOne(id);
     }
