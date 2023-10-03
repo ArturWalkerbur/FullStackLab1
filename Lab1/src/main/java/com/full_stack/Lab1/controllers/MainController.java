@@ -31,14 +31,11 @@ public class MainController {
 
     @PostMapping("/addNewCar")
     @ResponseBody
-    public String addNewCar(@RequestParam(name = "carname") String carname,
-                            @RequestParam(name = "model") String model,
-                            @RequestParam(name = "year") String year,
-                            @RequestParam(name = "volume") String volume){
+    public String addNewCar(@RequestBody Cars newCar){
 
         try{
 
-            carsService.addCar(new Cars(null, carname, model, Long.parseLong(year), Double.parseDouble(volume)));
+            carsService.addCar(new Cars(null, newCar.getCarname(), newCar.getModel(), newCar.getYear(), newCar.getVolume()));
 
         }catch (Exception e){
             e.printStackTrace();
@@ -112,6 +109,23 @@ public class MainController {
     public List<Cars> getFilteredCars2(@PathVariable(name = "volume")String volume){
         List<Cars> cars = carsService.filterCars2(Double.parseDouble(volume));
         return cars;
+    }
+
+    @CrossOrigin(origins = "http://localhost:4200")
+    @PostMapping("/test")
+    @ResponseBody
+    public String test(@RequestParam("number") int number){
+
+        try{
+
+            System.out.println(number);
+
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+
+
+        return "All is OK!";
     }
 
 }
