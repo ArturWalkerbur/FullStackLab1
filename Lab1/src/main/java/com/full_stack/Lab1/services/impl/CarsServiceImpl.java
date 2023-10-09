@@ -42,7 +42,7 @@ public class CarsServiceImpl implements CarsService {
 
     @Override
     public Cars getCar(Long id) {
-        return carsRepository.getOne(id);
+        return carsRepository.getById(id);
     }
 
     @Override

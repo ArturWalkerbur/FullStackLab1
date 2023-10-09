@@ -9,20 +9,7 @@ import {CarsService} from "./services/cars.service";
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent implements OnInit{
-  title = 'Cars Base';
-
-  cars: ICar[] = [];
-
-  constructor(private carsService: CarsService) { }
-  ngOnInit(): void {
-
-    this.carsService.getCarsData().subscribe((cars) => {
-        this.cars = cars;
-      }
-    );
-  }
-
+export class AppComponent{
 
 
 }

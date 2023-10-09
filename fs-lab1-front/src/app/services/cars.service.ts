@@ -2,7 +2,8 @@ import { Injectable } from '@angular/core';
 import {HttpClient, HttpHeaders, HttpParams} from '@angular/common/http';
 import { ICar } from '../models/car';
 import { ICarWithoutId } from '../models/car';
-import {BehaviorSubject} from "rxjs";
+import {BehaviorSubject, Observable} from "rxjs";
+import {data} from "autoprefixer";
 
 
 const httpOptions = {
@@ -64,6 +65,25 @@ export class CarsService {
       }
     );
 
+  }
+
+  editCarData(carData: ICar){
+    const body = {id: carData.id, carname: carData.carname, model: carData.model, year: carData.year, volume: carData.volume};
+    console.log(body);
+    this.http.post<ICar>('http://localhost:8000/editCar', body).subscribe(
+      (response) => {
+        console.log('Новые данные успешно обновлены:', response);
+      },
+      (error) => {
+        console.error('Произошла ошибка при добавлении данных:', error);
+      }
+    );
+
+
+  }
+
+  getSelectedCar(id: number): Observable<any> {
+    return this.http.get('http://localhost:8000/getCar/'+id);
   }
 
   test(data: number){

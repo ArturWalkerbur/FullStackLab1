@@ -13,5 +13,6 @@ public interface CarsRepository extends JpaRepository<Cars, Long> {
     List<Cars> findAllByCarnameOrModel(String carName, String model);
     List<Cars> findAllByYear(Long year);
     List<Cars> findAllByVolume(double volume);
+    Cars getById(Long id);
 
 }

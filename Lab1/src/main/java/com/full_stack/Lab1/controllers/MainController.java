@@ -14,10 +14,14 @@ import org.springframework.web.bind.annotation.*;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.ArrayList;
 import java.util.List;
 
 @Controller
+@RestController
 public class MainController {
+
+
 
     @Autowired
     private CarsService carsService;
@@ -27,6 +31,19 @@ public class MainController {
     public List<Cars> getCarsTable(){
         List<Cars> cars = carsService.getALlCars();
         return cars;
+    }
+
+    @GetMapping("/getCar/{id}")
+    @ResponseBody
+    public Cars getOneCar(@PathVariable(name = "id")Long id){
+        List<Cars> cars = carsService.getALlCars();
+        Cars car = null;
+        for (int i = 0; i < cars.size(); i++) {
+            if(cars.get(i).getId() == id){
+                car = cars.get(i);
+            }
+        }
+        return car;
     }
 
     @PostMapping("/addNewCar")
@@ -69,17 +86,13 @@ public class MainController {
 
     @PostMapping("/editCar")
     @ResponseBody
-    public String updateCar(@RequestParam(name = "carid") Long id,
-                            @RequestParam(name = "carname") String carname,
-                            @RequestParam(name = "model") String model,
-                            @RequestParam(name = "year") String year,
-                            @RequestParam(name = "volume") String volume){
+    public String updateCar(@RequestBody Cars updateCar){
 
         try{
 
-            Cars cars = carsService.getCar(id);
+            Cars cars = carsService.getCar(updateCar.getId());
 
-            carsService.saveCars(new Cars(id, carname, model, Long.parseLong(year), Double.parseDouble(volume)));
+            carsService.saveCars(new Cars(updateCar.getId(), updateCar.getCarname(), updateCar.getModel(), updateCar.getYear(), updateCar.getVolume()));
 
             return "The car has been updated!";
 
