@@ -2,6 +2,8 @@ package com.full_stack.Lab1.controllers;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.full_stack.Lab1.dto.Owners_dto;
+import com.full_stack.Lab1.dto.Renters_dto;
 import com.full_stack.Lab1.entity.*;
 import com.full_stack.Lab1.services.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +16,7 @@ import org.springframework.web.bind.annotation.*;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -157,11 +160,12 @@ public class MainController {
 
     @PostMapping("/addNewOwner")
     @ResponseBody
-    public String addNewOwner(@RequestBody Owners newOwner){
+    public String addNewOwner(@RequestBody Owners_dto newOwner){
 
         try{
-
-            ownersService.addOwner(new Owners(null, newOwner.getOwnerName(), newOwner.getDateOfBrith(), newOwner.getAddress(), newOwner.getCellNumber()));
+            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+            java.util.Date utilDate = dateFormat.parse(newOwner.getDateOfBirth());
+            ownersService.addOwner(new Owners(null, newOwner.getOwnerName(), new java.sql.Date(utilDate.getTime()), newOwner.getAddress(), newOwner.getCellNumber()));
 
         }catch (Exception e){
             e.printStackTrace();
@@ -173,11 +177,13 @@ public class MainController {
 
     @PostMapping("/addNewRenter")
     @ResponseBody
-    public String addNewRenter(@RequestBody Renters newRenter){
+    public String addNewRenter(@RequestBody Renters_dto newRenter){
 
         try{
+            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+            java.util.Date utilDate = dateFormat.parse(newRenter.getDateOfBirth());
 
-            rentersService.addRenter(new Renters(null, newRenter.getRenterName(), newRenter.getDateOfBrith(), newRenter.getAddress(), newRenter.getCellNumber(), newRenter.getTrustedCellNumber(), newRenter.getIIN()));
+            rentersService.addRenter(new Renters(null, newRenter.getRenterName(), new java.sql.Date(utilDate.getTime()), newRenter.getAddress(), newRenter.getCellNumber(), newRenter.getTrustedCellNumber(), newRenter.getIin()));
 
         }catch (Exception e){
             e.printStackTrace();

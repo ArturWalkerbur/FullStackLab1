@@ -17,6 +17,13 @@ import { NavbarComponent } from './components/navbar/navbar.component';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatButtonModule } from '@angular/material/button';
 import { OwnersComponent } from './pages/owners/owners.component';
+import { RentersComponent } from './pages/renters/renters.component';
+import {Add_new_ownerComponent} from "./components/addNewOwner/add_new_owner.component";
+import {Add_new_renterComponent} from "./components/addNewRnter/add_new_renter.component";
+import {OwnerDetailsComponent} from "./pages/owner-details/owner-details.component";
+import {RenterDetailsComponent} from "./pages/renter-details/renter-details.component";
+import { OwnershipComponent } from './pages/ownership/ownership.component';
+import { RentalComponent } from './pages/rental/rental.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -25,7 +32,14 @@ import { OwnersComponent } from './pages/owners/owners.component';
     AboutComponent,
     CarDetailsComponent,
     NavbarComponent,
-    OwnersComponent
+    OwnersComponent,
+    RentersComponent,
+    Add_new_ownerComponent,
+    Add_new_renterComponent,
+    OwnerDetailsComponent,
+    RenterDetailsComponent,
+    OwnershipComponent,
+    RentalComponent
   ],
   imports: [
     BrowserModule,

@@ -75,7 +75,7 @@ export class CarsService {
         console.log('Новые данные успешно обновлены:', response);
       },
       (error) => {
-        console.error('Произошла ошибка при добавлении данных:', error);
+        console.error('Произошла ошибка при обновлении данных:', error);
       }
     );
 

@@ -1,1 +1,40 @@
-<p>owners works!</p>
+<h1 class="font-bold mb-2 text-center text-3xl">{{ title | titlecase }}</h1>
+<h2 class="text-2xl font-bold px-4">Owners Table</h2>
+<br>
+<div class="flex flex-col">
+  <div class="overflow-x-auto sm:-mx-6 lg:-mx-8">
+    <div class="inline-block min-w-full py-2 sm:px-6 lg:px-8">
+      <div class="overflow-hidden">
+        <table class="min-w-full text-center text-sm font-light">
+          <thead class="border-b bg-neutral-800 font-medium text-white dark:border-neutral-500 dark:bg-neutral-900">
+          <tr>
+            <th scope="col" class=" px-6 py-4">ID</th>
+            <th scope="col" class=" px-6 py-4">Owner Name</th>
+            <th scope="col" class=" px-6 py-4">Date of brith</th>
+            <th scope="col" class=" px-6 py-4">address</th>
+            <th scope="col" class=" px-6 py-4">cell number</th>
+            <th scope="col" class=" px-6 py-4"><button>Update/Delete</button></th>
+
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="let item of owners" class="border-b dark:border-neutral-500">
+            <td class="whitespace-nowrap  px-6 py-4 font-medium">{{ item.id }}</td>
+            <td class="whitespace-nowrap  px-6 py-4">{{ item.ownerName}}</td>
+            <td class="whitespace-nowrap  px-6 py-4">{{ item.dateOfBrith }}</td>
+            <td class="whitespace-nowrap  px-6 py-4">{{ item.address }}</td>
+            <td class="whitespace-nowrap  px-6 py-4">{{ item.cellNumber }}</td>
+            <td class="whitespace-nowrap  px-6 py-4">
+              <div class="flex flex-col space-y-4">
+                <button type="button" (click)="goToOwnerDetail(item.id)" class="inline-block rounded bg-warning text-white px-6 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal shadow-[0_4px_9px_-4px_#e4a11b] transition duration-150 ease-in-out hover:bg-warning-600 hover:shadow-[0_8px_9px_-4px_rgba(228,161,27,0.3),0_4px_18px_0_rgba(228,161,27,0.2)] focus:bg-warning-600 focus:shadow-[0_8px_9px_-4px_rgba(228,161,27,0.3),0_4px_18px_0_rgba(228,161,27,0.2)] focus:outline-none focus:ring-0 active:bg-warning-700 active:shadow-[0_8px_9px_-4px_rgba(228,161,27,0.3),0_4px_18px_0_rgba(228,161,27,0.2)] dark:shadow-[0_4px_9px_-4px_rgba(228,161,27,0.5)] dark:hover:shadow-[0_8px_9px_-4px_rgba(228,161,27,0.2),0_4px_18px_0_rgba(228,161,27,0.1)] dark:focus:shadow-[0_8px_9px_-4px_rgba(228,161,27,0.2),0_4px_18px_0_rgba(228,161,27,0.1)] dark:active:shadow-[0_8px_9px_-4px_rgba(228,161,27,0.2),0_4px_18px_0_rgba(228,161,27,0.1)]">Update</button>
+                <button type="button" (click)="deleteSelectedOwner(item.id)" class="inline-block rounded bg-danger text-white px-6 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal shadow-[0_4px_9px_-4px_#dc4c64] transition duration-150 ease-in-out hover:bg-danger-600 hover:shadow-[0_8px_9px_-4px_rgba(220,76,100,0.3),0_4px_18px_0_rgba(220,76,100,0.2)] focus:bg-danger-600 focus:shadow-[0_8px_9px_-4px_rgba(220,76,100,0.3),0_4px_18px_0_rgba(220,76,100,0.2)] focus:outline-none focus:ring-0 active:bg-danger-700 active:shadow-[0_8px_9px_-4px_rgba(220,76,100,0.3),0_4px_18px_0_rgba(220,76,100,0.2)] dark:shadow-[0_4px_9px_-4px_rgba(220,76,100,0.5)] dark:hover:shadow-[0_8px_9px_-4px_rgba(220,76,100,0.2),0_4px_18px_0_rgba(220,76,100,0.1)] dark:focus:shadow-[0_8px_9px_-4px_rgba(220,76,100,0.2),0_4px_18px_0_rgba(220,76,100,0.1)] dark:active:shadow-[0_8px_9px_-4px_rgba(220,76,100,0.2),0_4px_18px_0_rgba(220,76,100,0.1)]">Delete</button>
+              </div>
+            </td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+<app-addnewowner></app-addnewowner>
