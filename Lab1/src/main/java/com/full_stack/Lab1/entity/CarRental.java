@@ -21,8 +21,7 @@ public class CarRental {
     @Column(name = "id")
     private Long id;
 
-    @OneToOne
-    @JoinColumn(name = "car_id")
+    @OneToOne(fetch = FetchType.EAGER)
     private Cars car;
 
     @ManyToOne(fetch = FetchType.EAGER)
