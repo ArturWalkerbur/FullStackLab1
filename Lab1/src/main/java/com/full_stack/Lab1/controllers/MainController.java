@@ -3,6 +3,8 @@ package com.full_stack.Lab1.controllers;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.full_stack.Lab1.dto.Owners_dto;
+import com.full_stack.Lab1.dto.Ownership_dto;
+import com.full_stack.Lab1.dto.Rental_dto;
 import com.full_stack.Lab1.dto.Renters_dto;
 import com.full_stack.Lab1.entity.*;
 import com.full_stack.Lab1.services.*;
@@ -195,11 +197,16 @@ public class MainController {
 
     @PostMapping("/addNewOwnership")
     @ResponseBody
-    public String addNewOwnership (@RequestBody CarOwnership newOwnership){
+    public String addNewOwnership (@RequestBody Ownership_dto newOwnership){
 
         try{
-
-            ownershipService.addCarOwnership(new CarOwnership(null, newOwnership.getCar(), newOwnership.getOwner(), newOwnership.getOwnershipStartDate(), newOwnership.getOwnershipEndDate()));
+            System.out.println(newOwnership.getCar_id());
+            Cars car = carsService.getCar(newOwnership.getCar_id());
+            Owners owner = ownersService.getOwner(newOwnership.getOwner_id());
+            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+            java.util.Date utilDateStart = dateFormat.parse(newOwnership.getOwnershipStartDate());
+            java.util.Date utilDateEnd = dateFormat.parse(newOwnership.getOwnershipEndDate());
+            ownershipService.addCarOwnership(new CarOwnership(null, car, owner, new java.sql.Date(utilDateStart.getTime()), new java.sql.Date(utilDateEnd.getTime())));
 
         }catch (Exception e){
             e.printStackTrace();
@@ -211,11 +218,17 @@ public class MainController {
 
     @PostMapping("/addNewRental")
     @ResponseBody
-    public String addNewRental (@RequestBody CarRental newRental){
+    public String addNewRental (@RequestBody Rental_dto newRental){
 
         try{
 
-            rentalService.addCarRental(new CarRental(null, newRental.getCar(), newRental.getRenter(), newRental.getRentalStartDate(), newRental.getRentalEndDate()));
+            Cars car = carsService.getCar(newRental.getCar_id());
+            Renters renter = rentersService.getRenter(newRental.getRenter_id());
+            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+            java.util.Date utilDateStart = dateFormat.parse(newRental.getRentalStartDate());
+            java.util.Date utilDateEnd = dateFormat.parse(newRental.getRentalEndDate());
+
+            rentalService.addCarRental(new CarRental(null, car, renter, new java.sql.Date(utilDateStart.getTime()), new java.sql.Date(utilDateEnd.getTime())));
 
         }catch (Exception e){
             e.printStackTrace();
@@ -402,6 +415,8 @@ public class MainController {
         try{
 
             CarOwnership ownership = ownershipService.getCarOwnership(updateOwnership.getId());
+
+            System.out.println(updateOwnership);
 
             ownershipService.saveCarOwnership(new CarOwnership(updateOwnership.getId(), updateOwnership.getCar(), updateOwnership.getOwner(), updateOwnership.getOwnershipStartDate(), updateOwnership.getOwnershipEndDate()));
 

@@ -24,6 +24,10 @@ import {OwnerDetailsComponent} from "./pages/owner-details/owner-details.compone
 import {RenterDetailsComponent} from "./pages/renter-details/renter-details.component";
 import { OwnershipComponent } from './pages/ownership/ownership.component';
 import { RentalComponent } from './pages/rental/rental.component';
+import {Add_new_ownershipComponent} from "./components/addNewOwnership/add_new_ownership.component";
+import { OwnershipDetailsComponent } from './pages/ownership-details/ownership-details.component';
+import { RentalDetailsComponent } from './pages/rental-details/rental-details.component';
+import {Add_new_rentalComponent} from "./components/addNewRental/add_new_rental.component";
 @NgModule({
   declarations: [
     AppComponent,
@@ -39,7 +43,11 @@ import { RentalComponent } from './pages/rental/rental.component';
     OwnerDetailsComponent,
     RenterDetailsComponent,
     OwnershipComponent,
-    RentalComponent
+    RentalComponent,
+    Add_new_ownershipComponent,
+    OwnershipDetailsComponent,
+    Add_new_rentalComponent,
+    RentalDetailsComponent
   ],
   imports: [
     BrowserModule,

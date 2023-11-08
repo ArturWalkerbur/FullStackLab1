@@ -22,8 +22,7 @@ public class CarOwnership {
     @Column(name = "id")
     private Long id;
 
-    @OneToOne
-    @JoinColumn(name = "carstable_id")
+    @OneToOne(fetch = FetchType.EAGER)
     private Cars car;
 
     @ManyToOne(fetch = FetchType.EAGER)
