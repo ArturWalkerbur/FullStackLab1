@@ -21,7 +21,7 @@ export interface OwnershipWhithObjects{
 
   id: number;
 
-  car: ICar;
+  car_id: number;
 
   owner: Owner;
 
@@ -50,7 +50,7 @@ export interface RentalWhithObjects{
 
   id: number;
 
-  car: ICar;
+  car_id: number;
 
   renter: Renter;
 

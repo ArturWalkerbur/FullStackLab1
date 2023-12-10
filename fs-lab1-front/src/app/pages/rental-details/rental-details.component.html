@@ -6,7 +6,7 @@
     class="block border max-w-sm rounded-lg bg-white p-6 shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] dark:bg-neutral-700">
     <form (ngSubmit)="onSubmit()">
       <div class="relative mb-12" data-te-input-wrapper-init>
-        <select class="peer block min-h-[auto] w-full rounded border bg-transparent px-3 py-[0.32rem] leading-[1.6] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 data-[te-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none dark:text-neutral-200 dark:placeholder:text-neutral-200 [&:not([data-te-input-placeholder-active])]:placeholder:opacity-0" type="number" id="car_id" [(ngModel)]="rentalDataWO.car.id" name="car_id"  required>
+        <select class="peer block min-h-[auto] w-full rounded border bg-transparent px-3 py-[0.32rem] leading-[1.6] outline-none transition-all duration-200 ease-linear focus:placeholder:opacity-100 data-[te-input-state-active]:placeholder:opacity-100 motion-reduce:transition-none dark:text-neutral-200 dark:placeholder:text-neutral-200 [&:not([data-te-input-placeholder-active])]:placeholder:opacity-0" type="number" id="car_id" [(ngModel)]="rentalDataWO.car_id" name="car_id"  required>
           <option *ngFor="let car of listCars" [value]="car.id">
             {{car.carname+" "+car.model}}
           </option>

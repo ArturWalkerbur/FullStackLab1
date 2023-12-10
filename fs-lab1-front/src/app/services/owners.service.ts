@@ -22,7 +22,7 @@ export class OwnersService {
   constructor(private http: HttpClient) { }
 
   refreshOwners() {
-    this.http.get<Owner[]>('http://localhost:8000/getAllOwners').subscribe(
+    this.http.get<Owner[]>('http://localhost:8082/owners-server/getAllOwners').subscribe(
       (newOwners) => {
         this.ownerSubject.next(newOwners);
       },
@@ -41,7 +41,7 @@ export class OwnersService {
   addNewOwnerData(ownerData: Owner){
     const body = {id: ownerData.id, ownerName: ownerData.ownerName, dateOfBirth: (ownerData.dateOfBrith.toString()), address: ownerData.address, cellNumber: ownerData.cellNumber};
     console.log(body);
-    this.http.post<Owner>('http://localhost:8000/addNewOwner', body).subscribe(
+    this.http.post<Owner>('http://localhost:8082/owners-server/addNewOwner', body).subscribe(
       (response) => {
         console.log('Новые данные успешно добавлены:', response);
       },
@@ -53,7 +53,7 @@ export class OwnersService {
   }
 
   deleteSelectedOwner(id: number) {
-    this.http.delete('http://localhost:8000/deleteOwner/'+id).subscribe(
+    this.http.delete('http://localhost:8082/owners-server/deleteOwner/'+id).subscribe(
       (response) => {
         console.log('Пользователь успешно удален:', response);
       },
@@ -68,7 +68,7 @@ export class OwnersService {
   editOwnerData(ownerData: Owner){
     const body = {id: ownerData.id, ownerName: ownerData.ownerName, dateOfBrith: ownerData.dateOfBrith, address: ownerData.address, cellNumber: ownerData.cellNumber};
     console.log(body);
-    this.http.post<Owner>('http://localhost:8000/editOwner', body).subscribe(
+    this.http.post<Owner>('http://localhost:8082/owners-server/editOwner', body).subscribe(
       (response) => {
         console.log('Новые данные успешно обновлены:', response);
       },
@@ -80,7 +80,7 @@ export class OwnersService {
   }
 
   getSelectedOwner(id: number): Observable<any> {
-    return this.http.get('http://localhost:8000/getOwner/'+id);
+    return this.http.get('http://localhost:8082/owners-server/getOwner/'+id);
   }
 
 

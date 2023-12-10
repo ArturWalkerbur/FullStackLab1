@@ -21,7 +21,7 @@ export class CarsService {
   private carsSubject = new BehaviorSubject<ICar[]>([]);
 
   refreshCars() {
-    this.http.get<ICar[]>('http://localhost:8000/getAllCars').subscribe(
+    this.http.get<ICar[]>('http://localhost:8082/car-server/getAllCars').subscribe(
       (newCars) => {
         this.carsSubject.next(newCars);
       },
@@ -41,7 +41,7 @@ export class CarsService {
   addNewCarData(carData: ICar){
     const body = {id: carData.id, carname: carData.carname, model: carData.model, year: carData.year, volume: carData.volume};
     console.log(body);
-    this.http.post<ICar>('http://localhost:8000/addNewCar', body).subscribe(
+    this.http.post<ICar>('http://localhost:8082/car-server/addNewCar', body).subscribe(
       (response) => {
         console.log('Новые данные успешно добавлены:', response);
       },
@@ -55,7 +55,7 @@ export class CarsService {
   }
 
   deleteSelectedCar(id: number) {
-    this.http.delete('http://localhost:8000/deleteCar/'+id).subscribe(
+    this.http.delete('http://localhost:8082/car-server/deleteCar/'+id).subscribe(
       (response) => {
         console.log('Машина успешно удалена:', response);
       },
@@ -70,7 +70,7 @@ export class CarsService {
   editCarData(carData: ICar){
     const body = {id: carData.id, carname: carData.carname, model: carData.model, year: carData.year, volume: carData.volume};
     console.log(body);
-    this.http.post<ICar>('http://localhost:8000/editCar', body).subscribe(
+    this.http.post<ICar>('http://localhost:8082/car-server/editCar', body).subscribe(
       (response) => {
         console.log('Новые данные успешно обновлены:', response);
       },
@@ -83,7 +83,7 @@ export class CarsService {
   }
 
   getSelectedCar(id: number): Observable<any> {
-    return this.http.get('http://localhost:8000/getCar/'+id);
+    return this.http.get('http://localhost:8082/car-server/getCar/'+id);
   }
 
   test(data: number){

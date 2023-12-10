@@ -25,7 +25,7 @@ export class RentalService{
   constructor(private http: HttpClient) { }
 
   refreshRentals() {
-    this.http.get<RentalWhithObjects[]>('http://localhost:8000/getAllRentals').subscribe(
+    this.http.get<RentalWhithObjects[]>('http://localhost:8082/renter-server/getAllRentals').subscribe(
       (newRentals) => {
         this.rentalSubject.next(newRentals);
       },
@@ -44,7 +44,7 @@ export class RentalService{
   addNewRentalData(rentalData: Rental){
     const body = {id: rentalData.id, car_id: rentalData.car, renter_id: rentalData.renter, rentalStartDate: (rentalData.rentalStartDate.toString()), rentalEndDate: (rentalData.rentalEndDate.toString())};
     console.log(body);
-    this.http.post<Rental>('http://localhost:8000/addNewRental', body).subscribe(
+    this.http.post<Rental>('http://localhost:8082/renter-server/addNewRental', body).subscribe(
       (response) => {
         console.log('Новые данные успешно добавлены:', response);
       },
@@ -56,7 +56,7 @@ export class RentalService{
   }
 
   deleteSelectedRental(id: number) {
-    this.http.delete('http://localhost:8000/deleteRental/'+id).subscribe(
+    this.http.delete('http://localhost:8082/renter-server/deleteRental/'+id).subscribe(
       (response) => {
         console.log('Данные успешно удалены:', response);
       },
@@ -69,9 +69,9 @@ export class RentalService{
   }
 
   editRentalData(rentalData: RentalWhithObjects){
-    const body = {id: rentalData.id, car: rentalData.car, renter: rentalData.renter, rentalStartDate: (rentalData.rentalStartDate.toString()), rentalEndDate: (rentalData.rentalEndDate.toString())};
+    const body = {id: rentalData.id, car_id: rentalData.car_id, renter: rentalData.renter, rentalStartDate: (rentalData.rentalStartDate.toString()), rentalEndDate: (rentalData.rentalEndDate.toString())};
     console.log(body);
-    this.http.post<Rental>('http://localhost:8000/editRental', body).subscribe(
+    this.http.post<Rental>('http://localhost:8082/renter-server/editRental', body).subscribe(
       (response) => {
         console.log('Новые данные успешно обновлены:', response);
       },
@@ -83,15 +83,15 @@ export class RentalService{
   }
 
   getSelectedRental(id: number): Observable<any> {
-    return this.http.get('http://localhost:8000/getRental/'+id);
+    return this.http.get('http://localhost:8082/renter-server/getRental/'+id);
   }
 
   getCarList(): Observable<any> {
-    return this.http.get<ICar[]>('http://localhost:8000/getAllCars');
+    return this.http.get<ICar[]>('http://localhost:8082/car-server/getAllCars');
   }
 
   getRenterList(): Observable<any> {
-    return this.http.get<Renter[]>('http://localhost:8000/getAllRenters');
+    return this.http.get<Renter[]>('http://localhost:8082/renter-server/getAllRenters');
   }
 
 }

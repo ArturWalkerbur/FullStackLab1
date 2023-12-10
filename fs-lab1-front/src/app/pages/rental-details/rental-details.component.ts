@@ -28,7 +28,7 @@ export class RentalDetailsComponent implements OnInit{
   public listRenters: Renter[] = [];
 
   rentalDataWO: RentalWhithObjects= {
-    car: this.carData, id: 0, renter: this.renterData, rentalEndDate: 0, rentalStartDate: 0
+    car_id: this.carData.id, id: 0, renter: this.renterData, rentalEndDate: 0, rentalStartDate: 0
   };
 
   constructor(private rentalService: RentalService, private route: ActivatedRoute) {}

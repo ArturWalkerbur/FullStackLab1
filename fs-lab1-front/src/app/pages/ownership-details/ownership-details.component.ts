@@ -26,7 +26,7 @@ export class OwnershipDetailsComponent {
   public listOwners: Owner[] = [];
 
   ownershipDataWO: OwnershipWhithObjects= {
-    car: this.carData, id: 0, owner: this.ownerData, ownershipEndDate: 0, ownershipStartDate: 0
+    car_id: this.carData.id, id: 0, owner: this.ownerData, ownershipEndDate: 0, ownershipStartDate: 0
   };
 
 

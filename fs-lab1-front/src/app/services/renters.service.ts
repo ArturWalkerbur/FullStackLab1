@@ -22,7 +22,7 @@ export class RentersService {
   constructor(private http: HttpClient) { }
 
   refreshRenters() {
-    this.http.get<Renter[]>('http://localhost:8000/getAllRenters').subscribe(
+    this.http.get<Renter[]>('http://localhost:8082/renter-server/getAllRenters').subscribe(
       (newRenters) => {
         this.renterSubject.next(newRenters);
       },
@@ -40,7 +40,7 @@ export class RentersService {
   addNewRenterData(renterData: Renter){
     const body = {id: renterData.id, renterName: renterData.renterName, dateOfBirth: renterData.dateOfBrith, address: renterData.address, cellNumber: renterData.cellNumber, trustedCellNumber: renterData.trustedCellNumber, iin: renterData.iin};
     console.log(body);
-    this.http.post<Renter>('http://localhost:8000/addNewRenter', body).subscribe(
+    this.http.post<Renter>('http://localhost:8082/renter-server/addNewRenter', body).subscribe(
       (response) => {
         console.log('Новые данные успешно добавлены:', response);
       },
@@ -53,7 +53,7 @@ export class RentersService {
   }
 
   deleteSelectedRenter(id: number) {
-    this.http.delete('http://localhost:8000/deleteRenter/'+id).subscribe(
+    this.http.delete('http://localhost:8082/renter-server/deleteRenter/'+id).subscribe(
       (response) => {
         console.log('Пользователь успешно удален:', response);
       },
@@ -68,7 +68,7 @@ export class RentersService {
   editRenterData(renterData: Renter){
     const body = {id: renterData.id, renterName: renterData.renterName, dateOfBrith: renterData.dateOfBrith, address: renterData.address, cellNumber: renterData.cellNumber, trustedCellNumber: renterData.trustedCellNumber, iin: renterData.iin};
     console.log(body);
-    this.http.post<Renter>('http://localhost:8000/editRenter', body).subscribe(
+    this.http.post<Renter>('http://localhost:8082/renter-server/editRenter', body).subscribe(
       (response) => {
         console.log('Новые данные успешно обновлены:', response);
       },
@@ -81,7 +81,7 @@ export class RentersService {
   }
 
   getSelectedRenter(id: number): Observable<any> {
-    return this.http.get('http://localhost:8000/getRenter/'+id);
+    return this.http.get('http://localhost:8082/renter-server/getRenter/'+id);
   }
 
 
