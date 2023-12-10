@@ -28,6 +28,8 @@ import {Add_new_ownershipComponent} from "./components/addNewOwnership/add_new_o
 import { OwnershipDetailsComponent } from './pages/ownership-details/ownership-details.component';
 import { RentalDetailsComponent } from './pages/rental-details/rental-details.component';
 import {Add_new_rentalComponent} from "./components/addNewRental/add_new_rental.component";
+import { LoginComponent } from './pages/login/login.component';
+import { SingUpComponent } from './pages/sing-up/sing-up.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -47,7 +49,9 @@ import {Add_new_rentalComponent} from "./components/addNewRental/add_new_rental.
     Add_new_ownershipComponent,
     OwnershipDetailsComponent,
     Add_new_rentalComponent,
-    RentalDetailsComponent
+    RentalDetailsComponent,
+    LoginComponent,
+    SingUpComponent
   ],
   imports: [
     BrowserModule,
