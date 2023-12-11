@@ -13,10 +13,10 @@ import {RentalComponent} from "./pages/rental/rental.component";
 import {RentalDetailsComponent} from "./pages/rental-details/rental-details.component";
 import {LoginComponent} from "./pages/login/login.component";
 import {HomeComponent} from "./pages/home/home.component";
-import {AuthGuard} from "./authGuard";
-import {AdminGuard} from "./adminGuard";
+import {AuthGuard} from "./guards/authGuard";
+import {AdminGuard} from "./guards/adminGuard";
 import {LogoutComponent} from "./components/logout/logout.component";
-import {UserGuard} from "./userGuard";
+import {UserGuard} from "./guards/userGuard";
 
 const routes: Routes = [
   {path: '', component: CarsComponent, canActivate: [AdminGuard]},
@@ -32,7 +32,6 @@ const routes: Routes = [
   { path: 'rental/:id', component: RentalDetailsComponent, canActivate: [AdminGuard]},
   { path: 'login', component: LoginComponent, canActivate: [UserGuard]},
   { path: 'home', component: HomeComponent, canActivate: [AuthGuard]},
-  { path: 'carInfo/:id', component: HomeComponent, canActivate: [AuthGuard]},
   { path: 'logout', component: LogoutComponent, canActivate: [AuthGuard]},
   { path: '**', redirectTo: '/login', pathMatch: 'full' }
 

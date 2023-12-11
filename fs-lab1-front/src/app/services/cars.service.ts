@@ -4,6 +4,7 @@ import { ICar } from '../models/car';
 import { ICarWithoutId } from '../models/car';
 import {BehaviorSubject, Observable} from "rxjs";
 import {data} from "autoprefixer";
+import {AuthService} from "./auth.service";
 
 
 const httpOptions = {
@@ -18,10 +19,17 @@ const httpOptions = {
 
 export class CarsService {
 
+  constructor(private http: HttpClient, private authService: AuthService) { }
+
   private carsSubject = new BehaviorSubject<ICar[]>([]);
 
   refreshCars() {
-    this.http.get<ICar[]>('http://localhost:8082/car-server/getAllCars').subscribe(
+
+    const token = this.authService.getAuthToken();
+
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+
+    this.http.get<ICar[]>('http://localhost:8082/car-server/getAllCars', { headers }).subscribe(
       (newCars) => {
         this.carsSubject.next(newCars);
       },
@@ -31,17 +39,20 @@ export class CarsService {
     );
   }
 
-  constructor(private http: HttpClient) { }
-
   getCarsData() {
     this.refreshCars();
     return this.carsSubject.asObservable();
   }
 
   addNewCarData(carData: ICar){
+
+    const token = this.authService.getAuthToken();
+
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+
     const body = {id: carData.id, carname: carData.carname, model: carData.model, year: carData.year, volume: carData.volume};
     console.log(body);
-    this.http.post<ICar>('http://localhost:8082/car-server/addNewCar', body).subscribe(
+    this.http.post<ICar>('http://localhost:8082/car-server/addNewCar', body, { headers }).subscribe(
       (response) => {
         console.log('Новые данные успешно добавлены:', response);
       },
@@ -55,7 +66,12 @@ export class CarsService {
   }
 
   deleteSelectedCar(id: number) {
-    this.http.delete('http://localhost:8082/car-server/deleteCar/'+id).subscribe(
+
+    const token = this.authService.getAuthToken();
+
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+
+    this.http.delete('http://localhost:8082/car-server/deleteCar/'+id, { headers }).subscribe(
       (response) => {
         console.log('Машина успешно удалена:', response);
       },
@@ -68,9 +84,14 @@ export class CarsService {
   }
 
   editCarData(carData: ICar){
+
+    const token = this.authService.getAuthToken();
+
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+
     const body = {id: carData.id, carname: carData.carname, model: carData.model, year: carData.year, volume: carData.volume};
     console.log(body);
-    this.http.post<ICar>('http://localhost:8082/car-server/editCar', body).subscribe(
+    this.http.post<ICar>('http://localhost:8082/car-server/editCar', body, { headers }).subscribe(
       (response) => {
         console.log('Новые данные успешно обновлены:', response);
       },
@@ -83,7 +104,12 @@ export class CarsService {
   }
 
   getSelectedCar(id: number): Observable<any> {
-    return this.http.get('http://localhost:8082/car-server/getCar/'+id);
+
+    const token = this.authService.getAuthToken();
+
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+
+    return this.http.get('http://localhost:8082/car-server/getCar/'+id, { headers });
   }
 
   test(data: number){

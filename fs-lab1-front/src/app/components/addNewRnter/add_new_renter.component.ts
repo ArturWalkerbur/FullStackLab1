@@ -16,7 +16,8 @@ export class Add_new_renterComponent {
     address: "",
     cellNumber: "",
     trustedCellNumber: "",
-    iin: ""
+    iin: "",
+    user_id: 0
   };
 
   constructor(private rentersService: RentersService) { }

@@ -16,6 +16,10 @@ export class AuthService {
     localStorage.setItem(this.tokenKey, token);
   }
 
+  getAuthToken(): string | null {
+    return localStorage.getItem(this.tokenKey);
+  }
+
   getUserRole(): string | null {
     const token = localStorage.getItem(this.tokenKey);
     if (token) {

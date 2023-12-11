@@ -3,6 +3,7 @@ import {HttpClient, HttpHeaders, HttpParams} from '@angular/common/http';
 import {BehaviorSubject, Observable} from "rxjs";
 import {data} from "autoprefixer";
 import {Owner} from "../models/client";
+import {AuthService} from "./auth.service";
 
 
 const httpOptions = {
@@ -19,10 +20,14 @@ export class OwnersService {
 
   private ownerSubject = new BehaviorSubject<Owner[]>([]);
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private authService: AuthService) { }
 
   refreshOwners() {
-    this.http.get<Owner[]>('http://localhost:8082/owners-server/getAllOwners').subscribe(
+    const token = this.authService.getAuthToken();
+
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+
+    this.http.get<Owner[]>('http://localhost:8082/owners-server/getAllOwners', {headers}).subscribe(
       (newOwners) => {
         this.ownerSubject.next(newOwners);
       },
@@ -39,9 +44,14 @@ export class OwnersService {
 
 
   addNewOwnerData(ownerData: Owner){
-    const body = {id: ownerData.id, ownerName: ownerData.ownerName, dateOfBirth: (ownerData.dateOfBrith.toString()), address: ownerData.address, cellNumber: ownerData.cellNumber};
+
+    const token = this.authService.getAuthToken();
+
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+
+    const body = {id: ownerData.id, ownerName: ownerData.ownerName, dateOfBirth: (ownerData.dateOfBrith.toString()), address: ownerData.address, cellNumber: ownerData.cellNumber, user_id: ownerData.user_id};
     console.log(body);
-    this.http.post<Owner>('http://localhost:8082/owners-server/addNewOwner', body).subscribe(
+    this.http.post<Owner>('http://localhost:8082/owners-server/addNewOwner', body, {headers}).subscribe(
       (response) => {
         console.log('Новые данные успешно добавлены:', response);
       },
@@ -53,7 +63,12 @@ export class OwnersService {
   }
 
   deleteSelectedOwner(id: number) {
-    this.http.delete('http://localhost:8082/owners-server/deleteOwner/'+id).subscribe(
+
+    const token = this.authService.getAuthToken();
+
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+
+    this.http.delete('http://localhost:8082/owners-server/deleteOwner/'+id, {headers}).subscribe(
       (response) => {
         console.log('Пользователь успешно удален:', response);
       },
@@ -66,9 +81,14 @@ export class OwnersService {
   }
 
   editOwnerData(ownerData: Owner){
-    const body = {id: ownerData.id, ownerName: ownerData.ownerName, dateOfBrith: ownerData.dateOfBrith, address: ownerData.address, cellNumber: ownerData.cellNumber};
+
+    const token = this.authService.getAuthToken();
+
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+
+    const body = {id: ownerData.id, ownerName: ownerData.ownerName, dateOfBrith: ownerData.dateOfBrith, address: ownerData.address, cellNumber: ownerData.cellNumber, user_id: ownerData.user_id};
     console.log(body);
-    this.http.post<Owner>('http://localhost:8082/owners-server/editOwner', body).subscribe(
+    this.http.post<Owner>('http://localhost:8082/owners-server/editOwner', body, {headers}).subscribe(
       (response) => {
         console.log('Новые данные успешно обновлены:', response);
       },
@@ -80,7 +100,12 @@ export class OwnersService {
   }
 
   getSelectedOwner(id: number): Observable<any> {
-    return this.http.get('http://localhost:8082/owners-server/getOwner/'+id);
+
+    const token = this.authService.getAuthToken();
+
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+
+    return this.http.get('http://localhost:8082/owners-server/getOwner/'+id, {headers});
   }
 
 

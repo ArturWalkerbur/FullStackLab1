@@ -14,7 +14,8 @@ export class Add_new_ownerComponent {
     ownerName: "",
     dateOfBrith: Date.now(),
     address: "",
-    cellNumber: ""
+    cellNumber: "",
+    user_id: 0
   };
 
   constructor(private ownersService: OwnersService) { }

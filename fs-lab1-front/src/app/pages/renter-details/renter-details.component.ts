@@ -21,7 +21,8 @@ export class RenterDetailsComponent {
     id: 0,
     iin: "",
     renterName: "",
-    trustedCellNumber: ""
+    trustedCellNumber: "",
+    user_id: 0
 
 
   };

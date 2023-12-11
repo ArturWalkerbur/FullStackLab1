@@ -4,6 +4,7 @@ export interface Owner{
   dateOfBrith: number;
   address: string;
   cellNumber: string;
+  user_id: number;
 }
 
 export interface Renter{
@@ -14,6 +15,7 @@ export interface Renter{
   cellNumber: string;
   trustedCellNumber: string;
   iin: string;
+  user_id: number;
 }
 
 export interface JWTAuthResponse{

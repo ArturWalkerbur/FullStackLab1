@@ -17,7 +17,7 @@ export class Add_new_ownershipComponent implements OnInit{
 
   };
   ownerData: Owner = {
-    address: "", cellNumber: "", dateOfBrith: 0, id: 0, ownerName: ""
+    address: "", cellNumber: "", dateOfBrith: 0, id: 0, ownerName: "", user_id: 0
 
   };
 

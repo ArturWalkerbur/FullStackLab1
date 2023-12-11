@@ -20,7 +20,7 @@ export class RentalDetailsComponent implements OnInit{
 
   };
   renterData: Renter = {
-    address: "", cellNumber: "", dateOfBrith: 0, id: 0, renterName: "", trustedCellNumber: "", iin: ""
+    address: "", cellNumber: "", dateOfBrith: 0, id: 0, renterName: "", trustedCellNumber: "", iin: "", user_id: 0
 
   };
 

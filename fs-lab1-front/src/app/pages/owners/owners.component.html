@@ -13,6 +13,7 @@
             <th scope="col" class=" px-6 py-4">Date of brith</th>
             <th scope="col" class=" px-6 py-4">address</th>
             <th scope="col" class=" px-6 py-4">cell number</th>
+            <th scope="col" class=" px-6 py-4">User</th>
             <th scope="col" class=" px-6 py-4"><button>Update/Delete</button></th>
 
           </tr>
@@ -24,6 +25,7 @@
             <td class="whitespace-nowrap  px-6 py-4">{{ item.dateOfBrith }}</td>
             <td class="whitespace-nowrap  px-6 py-4">{{ item.address }}</td>
             <td class="whitespace-nowrap  px-6 py-4">{{ item.cellNumber }}</td>
+            <td class="whitespace-nowrap  px-6 py-4">{{ item.user_id }}</td>
             <td class="whitespace-nowrap  px-6 py-4">
               <div class="flex flex-col space-y-4">
                 <button type="button" (click)="goToOwnerDetail(item.id)" class="inline-block rounded bg-warning text-white px-6 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal shadow-[0_4px_9px_-4px_#e4a11b] transition duration-150 ease-in-out hover:bg-warning-600 hover:shadow-[0_8px_9px_-4px_rgba(228,161,27,0.3),0_4px_18px_0_rgba(228,161,27,0.2)] focus:bg-warning-600 focus:shadow-[0_8px_9px_-4px_rgba(228,161,27,0.3),0_4px_18px_0_rgba(228,161,27,0.2)] focus:outline-none focus:ring-0 active:bg-warning-700 active:shadow-[0_8px_9px_-4px_rgba(228,161,27,0.3),0_4px_18px_0_rgba(228,161,27,0.2)] dark:shadow-[0_4px_9px_-4px_rgba(228,161,27,0.5)] dark:hover:shadow-[0_8px_9px_-4px_rgba(228,161,27,0.2),0_4px_18px_0_rgba(228,161,27,0.1)] dark:focus:shadow-[0_8px_9px_-4px_rgba(228,161,27,0.2),0_4px_18px_0_rgba(228,161,27,0.1)] dark:active:shadow-[0_8px_9px_-4px_rgba(228,161,27,0.2),0_4px_18px_0_rgba(228,161,27,0.1)]">Update</button>

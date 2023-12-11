@@ -18,7 +18,8 @@ export class OwnerDetailsComponent {
     cellNumber: "",
     dateOfBrith: 0,
     id: 0,
-    ownerName: ""
+    ownerName: "",
+    user_id: 0
 
   };
 

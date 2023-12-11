@@ -30,7 +30,6 @@ import { RentalDetailsComponent } from './pages/rental-details/rental-details.co
 import {Add_new_rentalComponent} from "./components/addNewRental/add_new_rental.component";
 import { LoginComponent } from './pages/login/login.component';
 import { HomeComponent } from './pages/home/home.component';
-import { CarsInfoComponent } from './pages/cars-info/cars-info.component';
 import {LogoutComponent} from "./components/logout/logout.component";
 import {NavbarComponent2} from "./components/navbar2/navbar2.component";
 
@@ -56,7 +55,6 @@ import {NavbarComponent2} from "./components/navbar2/navbar2.component";
     RentalDetailsComponent,
     LoginComponent,
     HomeComponent,
-    CarsInfoComponent,
     LogoutComponent,
     NavbarComponent2
   ],
