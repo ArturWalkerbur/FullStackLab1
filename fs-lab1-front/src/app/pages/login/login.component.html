@@ -1,1 +1,30 @@
-<p>login works!</p>
+<div class="login_body flex flex-col" >
+
+  <h3 class="bg-success success_text font-bold mb-2 text-center" *ngIf="registrationSuccess">You have successfully registered!</h3>
+
+  <div class="main">
+    <input type="checkbox" id="chk" aria-hidden="true">
+
+    <div class="signup">
+      <form (ngSubmit)="onSubmit2()">
+        <label for="chk" aria-hidden="true">Sign up</label>
+        <input type="email" [(ngModel)]="userData2.email" name="email" placeholder="Email" required="">
+        <input type="text" [(ngModel)]="userData2.username" name="name" placeholder="Name" required="">
+        <input type="password" [(ngModel)]="userData2.password" name="password" placeholder="Password" required="">
+        <input type="password" [(ngModel)]="userData2.rePassword" name="rePassword" placeholder="Retype Password" required="">
+        <button>Sign up</button>
+      </form>
+    </div>
+
+    <div class="login">
+      <form (ngSubmit)="onSubmit()">
+        <label for="chk" aria-hidden="true" >Login</label>
+        <input type="email" [(ngModel)]="userData.email" name="email" placeholder="Email"  required="">
+        <input type="password" [(ngModel)]="userData.password" name="password" placeholder="Password" required="">
+        <button>Login</button>
+      </form>
+    </div>
+  </div>
+
+</div>
+

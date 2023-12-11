@@ -29,7 +29,11 @@ import { OwnershipDetailsComponent } from './pages/ownership-details/ownership-d
 import { RentalDetailsComponent } from './pages/rental-details/rental-details.component';
 import {Add_new_rentalComponent} from "./components/addNewRental/add_new_rental.component";
 import { LoginComponent } from './pages/login/login.component';
-import { SingUpComponent } from './pages/sing-up/sing-up.component';
+import { HomeComponent } from './pages/home/home.component';
+import { CarsInfoComponent } from './pages/cars-info/cars-info.component';
+import {LogoutComponent} from "./components/logout/logout.component";
+import {NavbarComponent2} from "./components/navbar2/navbar2.component";
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -51,7 +55,10 @@ import { SingUpComponent } from './pages/sing-up/sing-up.component';
     Add_new_rentalComponent,
     RentalDetailsComponent,
     LoginComponent,
-    SingUpComponent
+    HomeComponent,
+    CarsInfoComponent,
+    LogoutComponent,
+    NavbarComponent2
   ],
   imports: [
     BrowserModule,
@@ -62,7 +69,7 @@ import { SingUpComponent } from './pages/sing-up/sing-up.component';
     AppRoutingModule,
     NoopAnimationsModule,
     MatToolbarModule,
-    MatButtonModule
+    MatButtonModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

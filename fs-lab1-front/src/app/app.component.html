@@ -1,4 +1,5 @@
-<app-navbar></app-navbar>
+<app-navbar *ngIf="isUserAdmin"></app-navbar>
+<app-navbar2 *ngIf="isUserLoggedIn"></app-navbar2>
 <router-outlet></router-outlet>
 
 

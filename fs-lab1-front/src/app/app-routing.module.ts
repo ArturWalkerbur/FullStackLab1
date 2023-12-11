@@ -11,24 +11,36 @@ import {OwnershipComponent} from "./pages/ownership/ownership.component";
 import {OwnershipDetailsComponent} from "./pages/ownership-details/ownership-details.component";
 import {RentalComponent} from "./pages/rental/rental.component";
 import {RentalDetailsComponent} from "./pages/rental-details/rental-details.component";
+import {LoginComponent} from "./pages/login/login.component";
+import {HomeComponent} from "./pages/home/home.component";
+import {AuthGuard} from "./authGuard";
+import {AdminGuard} from "./adminGuard";
+import {LogoutComponent} from "./components/logout/logout.component";
+import {UserGuard} from "./userGuard";
 
 const routes: Routes = [
-  {path: '', component: CarsComponent },
-  { path: 'details/:id', component: CarDetailsComponent },
-  { path: 'home', component: CarsComponent },
-  { path: 'owners', component: OwnersComponent },
-  { path: 'renters', component:  RentersComponent},
-  { path: 'owners/:id', component:  OwnerDetailsComponent},
-  { path: 'renters/:id', component:  RenterDetailsComponent},
-  { path: 'ownership', component:  OwnershipComponent},
-  { path: 'ownership/:id', component:  OwnershipDetailsComponent},
-  { path: 'rental', component:  RentalComponent},
-  { path: 'rental/:id', component: RentalDetailsComponent},
+  {path: '', component: CarsComponent, canActivate: [AdminGuard]},
+  { path: 'details/:id', component: CarDetailsComponent, canActivate: [AdminGuard] },
+  { path: 'cars', component: CarsComponent, canActivate: [AdminGuard] },
+  { path: 'owners', component: OwnersComponent, canActivate: [AdminGuard] },
+  { path: 'renters', component:  RentersComponent, canActivate: [AdminGuard]},
+  { path: 'owners/:id', component:  OwnerDetailsComponent, canActivate: [AdminGuard]},
+  { path: 'renters/:id', component:  RenterDetailsComponent, canActivate: [AdminGuard]},
+  { path: 'ownership', component:  OwnershipComponent, canActivate: [AdminGuard]},
+  { path: 'ownership/:id', component:  OwnershipDetailsComponent, canActivate: [AdminGuard]},
+  { path: 'rental', component:  RentalComponent, canActivate: [AdminGuard]},
+  { path: 'rental/:id', component: RentalDetailsComponent, canActivate: [AdminGuard]},
+  { path: 'login', component: LoginComponent, canActivate: [UserGuard]},
+  { path: 'home', component: HomeComponent, canActivate: [AuthGuard]},
+  { path: 'carInfo/:id', component: HomeComponent, canActivate: [AuthGuard]},
+  { path: 'logout', component: LogoutComponent, canActivate: [AuthGuard]},
+  { path: '**', redirectTo: '/login', pathMatch: 'full' }
 
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
+  providers: [AuthGuard, AdminGuard, UserGuard],
   exports: [RouterModule],
 })
 export class AppRoutingModule {}

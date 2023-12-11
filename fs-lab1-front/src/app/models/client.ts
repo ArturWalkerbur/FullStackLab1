@@ -15,3 +15,10 @@ export interface Renter{
   trustedCellNumber: string;
   iin: string;
 }
+
+export interface JWTAuthResponse{
+
+  accessToken: string;
+  tokenType: string;
+
+}
