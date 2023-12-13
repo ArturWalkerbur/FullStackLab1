@@ -19,3 +19,20 @@ export interface UserRegistration{
   rePassword: string;
 
 }
+
+export interface PasswordChange{
+  password: string;
+  newPassword: string;
+  reNewPassword: string;
+
+}
+
+export interface Message {
+
+  id: number;
+  topic: string;
+  text: string;
+  dateDispatch: number;
+  sender: string;
+
+}

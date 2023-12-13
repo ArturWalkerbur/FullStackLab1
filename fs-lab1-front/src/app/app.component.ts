@@ -1,25 +1,27 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, DoCheck, OnInit} from '@angular/core';
 import {ICar} from "./models/car";
 import {HttpClient} from "@angular/common/http";
 import {CarsService} from "./services/cars.service";
 import {LoginService} from "./services/login.service";
 import {ActivatedRoute} from "@angular/router";
 import {AuthService} from "./services/auth.service";
-
+import { ChangeDetectorRef } from '@angular/core';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent implements OnInit{
+export class AppComponent implements DoCheck {
 
   constructor(private authService: AuthService, private rout: ActivatedRoute) { }
 
   isUserLoggedIn: boolean = false;
   isUserAdmin: boolean = false;
 
-  ngOnInit() {
+
+
+  ngDoCheck() {
     const userRole = this.authService.getUserRole();
 
     if (userRole && userRole === 'ADMIN') {
@@ -32,5 +34,8 @@ export class AppComponent implements OnInit{
       this.isUserAdmin = false;
     }
   }
+
+
+
 
 }

@@ -32,6 +32,8 @@ import { LoginComponent } from './pages/login/login.component';
 import { HomeComponent } from './pages/home/home.component';
 import {LogoutComponent} from "./components/logout/logout.component";
 import {NavbarComponent2} from "./components/navbar2/navbar2.component";
+import { ProfileComponent } from './pages/profile/profile.component';
+import {MessageTableComponent} from "./components/MessageTable/messageTable.component";
 
 @NgModule({
   declarations: [
@@ -56,7 +58,9 @@ import {NavbarComponent2} from "./components/navbar2/navbar2.component";
     LoginComponent,
     HomeComponent,
     LogoutComponent,
-    NavbarComponent2
+    NavbarComponent2,
+    ProfileComponent,
+    MessageTableComponent
   ],
   imports: [
     BrowserModule,

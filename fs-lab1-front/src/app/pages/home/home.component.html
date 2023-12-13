@@ -1,36 +1,47 @@
+<br>
+<br>
 <h1 class="font-bold mb-2 text-center text-3xl">{{ title | titlecase }}</h1>
 <br>
 <br>
 <h2 class="text-2xl font-bold px-4">Free cars</h2>
 <br>
-<div class="flex flex-col ">
-  <div class="overflow-x-auto sm:-mx-6 lg:-mx-8">
-    <div class="inline-block min-w-full py-2 sm:px-6 lg:px-8">
-      <div class="overflow-hidden">
-        <table class="min-w-full text-center text-sm font-light">
-          <thead class="border-b bg-neutral-800 font-medium text-white dark:border-neutral-500 dark:bg-neutral-900">
-          <tr>
-            <th scope="col" class=" px-6 py-4">ID</th>
-            <th scope="col" class=" px-6 py-4">Car Name</th>
-            <th scope="col" class=" px-6 py-4">Model</th>
-            <th scope="col" class=" px-6 py-4"><button>More Information</button></th>
+<h3 class="bg-success success_text font-bold mb-2 text-center" *ngIf="bookSuccess">You have successfully booked car!</h3>
+<br *ngIf="bookSuccess">
+<div class="ag-format-container">
+  <div class="ag-courses_box">
+    <div *ngFor="let item of cars"  class="ag-courses_item">
+      <a href="#" class="ag-courses-item_link">
+        <div class="ag-courses-item_bg"></div>
 
-          </tr>
-          </thead>
-          <tbody>
-          <tr *ngFor="let item of cars" class="border-b dark:border-neutral-500">
-            <td class="whitespace-nowrap  px-6 py-4 font-medium">{{ item.id }}</td>
-            <td class="whitespace-nowrap  px-6 py-4">{{ item.carname }}</td>
-            <td class="whitespace-nowrap  px-6 py-4">{{ item.model }}</td>
-            <td class="whitespace-nowrap  px-6 py-4">
-              <div class="flex flex-col space-y-4">
-                <button type="button" (click)="goToCarInfo(item.id)" class="inline-block rounded bg-warning text-white px-6 pb-2 pt-2.5 text-xs font-medium uppercase leading-normal shadow-[0_4px_9px_-4px_#e4a11b] transition duration-150 ease-in-out hover:bg-warning-600 hover:shadow-[0_8px_9px_-4px_rgba(228,161,27,0.3),0_4px_18px_0_rgba(228,161,27,0.2)] focus:bg-warning-600 focus:shadow-[0_8px_9px_-4px_rgba(228,161,27,0.3),0_4px_18px_0_rgba(228,161,27,0.2)] focus:outline-none focus:ring-0 active:bg-warning-700 active:shadow-[0_8px_9px_-4px_rgba(228,161,27,0.3),0_4px_18px_0_rgba(228,161,27,0.2)] dark:shadow-[0_4px_9px_-4px_rgba(228,161,27,0.5)] dark:hover:shadow-[0_8px_9px_-4px_rgba(228,161,27,0.2),0_4px_18px_0_rgba(228,161,27,0.1)] dark:focus:shadow-[0_8px_9px_-4px_rgba(228,161,27,0.2),0_4px_18px_0_rgba(228,161,27,0.1)] dark:active:shadow-[0_8px_9px_-4px_rgba(228,161,27,0.2),0_4px_18px_0_rgba(228,161,27,0.1)]">More Info</button>
-              </div>
-            </td>
-          </tr>
-          </tbody>
-        </table>
-      </div>
+        <div class="ag-courses-item_title">
+          {{item.carname}}
+        </div>
+
+        <div class="ag-courses-item_date-box">
+          Model:
+          <span class="ag-courses-item_date">
+                {{item.model}}
+              </span>
+        </div>
+        <div class="ag-courses-item_date-box">
+          Volume:
+          <span class="ag-courses-item_date">
+                {{item.volume}}
+              </span>
+        </div>
+        <div class="ag-courses-item_date-box">
+          Year:
+          <span class="ag-courses-item_date">
+                {{item.year}}
+              </span>
+        </div>
+      </a>
+      <button type="button" (click)="bookCar()" class="inline-block rounded bg-success px-6 pb-2 pt-2.5 text-lg font-medium uppercase leading-normal text-white shadow-[0_4px_9px_-4px_#14a44d] transition duration-150 ease-in-out hover:bg-success-600 hover:shadow-[0_8px_9px_-4px_rgba(20,164,77,0.3),0_4px_18px_0_rgba(20,164,77,0.2)] focus:bg-success-600 focus:shadow-[0_8px_9px_-4px_rgba(20,164,77,0.3),0_4px_18px_0_rgba(20,164,77,0.2)] focus:outline-none focus:ring-0 active:bg-success-700 active:shadow-[0_8px_9px_-4px_rgba(20,164,77,0.3),0_4px_18px_0_rgba(20,164,77,0.2)] dark:shadow-[0_4px_9px_-4px_rgba(20,164,77,0.5)] dark:hover:shadow-[0_8px_9px_-4px_rgba(20,164,77,0.2),0_4px_18px_0_rgba(20,164,77,0.1)] dark:focus:shadow-[0_8px_9px_-4px_rgba(20,164,77,0.2),0_4px_18px_0_rgba(20,164,77,0.1)] dark:active:shadow-[0_8px_9px_-4px_rgba(20,164,77,0.2),0_4px_18px_0_rgba(20,164,77,0.1)]">>BOOK</button>
     </div>
   </div>
 </div>
+
+
+<button class="sticky-button" (click)="onClick()">Become Partner</button>
+
+

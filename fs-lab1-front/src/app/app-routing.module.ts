@@ -17,6 +17,7 @@ import {AuthGuard} from "./guards/authGuard";
 import {AdminGuard} from "./guards/adminGuard";
 import {LogoutComponent} from "./components/logout/logout.component";
 import {UserGuard} from "./guards/userGuard";
+import {ProfileComponent} from "./pages/profile/profile.component";
 
 const routes: Routes = [
   {path: '', component: CarsComponent, canActivate: [AdminGuard]},
@@ -33,6 +34,7 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent, canActivate: [UserGuard]},
   { path: 'home', component: HomeComponent, canActivate: [AuthGuard]},
   { path: 'logout', component: LogoutComponent, canActivate: [AuthGuard]},
+  { path: 'profile', component: ProfileComponent, canActivate: [AuthGuard]},
   { path: '**', redirectTo: '/login', pathMatch: 'full' }
 
 ];
